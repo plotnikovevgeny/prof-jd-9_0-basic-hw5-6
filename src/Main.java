@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -64,5 +65,89 @@ public class Main {
             }
         }
         System.out.println("arrayOne = " + Arrays.toString(arrayOne));
+
+        // задание 5
+        int[][] matrix = new int[3][3];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (i == j || i + j == matrix[i].length - 1) {
+                    matrix[i][j] = 1;
+                }
+            }
+        }
+
+        for (int[] rows : matrix) {
+            for (int column : rows) {
+                System.out.print(column + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        //задание 6
+
+        int[] arrayFive = {5, 4, 3, 2, 1};
+        System.out.println(Arrays.toString(arrayFive));
+        int[] arrayFiveReverse = new int[arrayFive.length];
+        for (int i = 0, j = arrayFive.length - 1; i < arrayFive.length; i++, j--) {
+            arrayFiveReverse[j] = arrayFive[i];
+        }
+        arrayFive = arrayFiveReverse;
+        System.out.println(Arrays.toString(arrayFive));
+
+        // задание 7
+        int[] arraySix = {5, 8, 2, 3, 9};
+        System.out.println(Arrays.toString(arraySix));
+        if (arraySix.length % 2 == 0) {
+            for (int i = 0; i < arraySix.length / 2; i++) {
+                int temp = arraySix[i];
+                arraySix[i] = arraySix[arraySix.length - 1 - i];
+                arraySix[arraySix.length - 1 - i] = temp;
+            }
+        } else {
+            for (int i = 0; i <= arraySix.length / 2 - 1; i++) {
+                int temp = arraySix[i];
+                arraySix[i] = arraySix[arraySix.length - 1 - i];
+                arraySix[arraySix.length - 1 - i] = temp;
+            }
+        }
+        System.out.println(Arrays.toString(arraySix));
+
+        // задание 9
+        int[] arraySeven = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1, -1, -2, -10, -2, 0, -1, -1, -1};
+        Arrays.sort(arraySeven);
+        int[] arraySevenPlus = new int[arraySeven.length];
+        int[] arraySevenMinus = new int[arraySeven.length];
+        for (int i = 0; i < arraySeven.length; i++) {
+            if (arraySeven[i] < 1) {
+                arraySevenMinus[i] = arraySeven[i];
+            } else {
+                arraySevenPlus[i] = arraySeven[i];
+            }
+        }
+        Arrays.sort(arraySevenPlus);
+        Arrays.sort(arraySevenMinus);
+        int countMinusOne = 0;
+        int countZero = 0;
+        int countMinusTwo = 0;
+
+        for (int i : arraySeven) {
+            if (i == 0) countZero++;
+            if (i == -1) countMinusOne++;
+            if (i == -2) countMinusTwo++;
+        }
+
+        System.out.println("Пара чисел из массива " + Arrays.toString(arraySeven) + " сумма которых равна -2 это:");
+        for (int sevenPlus : arraySevenPlus) {
+            for (int sevenMinus : arraySevenMinus) {
+                if (sevenPlus < 1) break;
+                if (sevenPlus + sevenMinus == -2 && sevenMinus != 0 && sevenMinus != -2) {
+                    System.out.println(sevenPlus + " и " + sevenMinus);
+                }
+            }
+        }
+        if (countMinusOne > 2) System.out.println(-1 + " и " + -1);
+        if (countMinusTwo > 0 && countZero > 0) System.out.println(0 + " и " + -2);
     }
 }
+
