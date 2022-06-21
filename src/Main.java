@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -96,25 +95,18 @@ public class Main {
         System.out.println(Arrays.toString(arrayFive));
 
         // задание 7
-        int[] arraySix = {5, 8, 2, 3, 9};
+        int[] arraySix = {5, 8, 2, 3, 9, 6};
         System.out.println(Arrays.toString(arraySix));
-        if (arraySix.length % 2 == 0) {
-            for (int i = 0; i < arraySix.length / 2; i++) {
-                int temp = arraySix[i];
-                arraySix[i] = arraySix[arraySix.length - 1 - i];
-                arraySix[arraySix.length - 1 - i] = temp;
-            }
-        } else {
-            for (int i = 0; i <= arraySix.length / 2 - 1; i++) {
-                int temp = arraySix[i];
-                arraySix[i] = arraySix[arraySix.length - 1 - i];
-                arraySix[arraySix.length - 1 - i] = temp;
-            }
+        for (int i = 0; i < arraySix.length / 2; i++) {
+            int temp = arraySix[i];
+            arraySix[i] = arraySix[arraySix.length - 1 - i];
+            arraySix[arraySix.length - 1 - i] = temp;
         }
+
         System.out.println(Arrays.toString(arraySix));
 
         // задание 9
-        int[] arraySeven = {-6, 2, 5, -8, 8, 10, 4, -7, 12, 1, -1, -2, -10, -2, 0, -1, -1, -1};
+        int[] arraySeven = {1, -3, -10, 8, 124, -123, 124125, -12351235, -2135125, 0};
         Arrays.sort(arraySeven);
         int[] arraySevenPlus = new int[arraySeven.length];
         int[] arraySevenMinus = new int[arraySeven.length];
@@ -148,6 +140,68 @@ public class Main {
         }
         if (countMinusOne > 2) System.out.println(-1 + " и " + -1);
         if (countMinusTwo > 0 && countZero > 0) System.out.println(0 + " и " + -2);
+        // задание 1
+        /*
+        Первым делом бухгалтеры попросили посчитать сумму всех выплат за месяц.
+        Нужно написать программу, которая решит эту задачу, и вывести в консоль результат
+в       формате: «Сумма трат за месяц составила … рублей».
+         */
+        int[] arrayEight = generateRandomArray();
+        int sum = 0;
+        for (int i : arrayEight) {
+            sum += i;
+        }
+        System.out.println("Сумма трат за месяц составила " + sum + " рублей");
+
+        // задание 2
+        /*
+            Следующая задача — найти минимальную и максимальную трату за день.
+            Нужно написать программу, которая решит эту задачу, и вывести в консоль результат
+в           формате: «Минимальная сумма трат за день составила … рублей. Максимальная сумма трат за день составила … рублей».
+         */
+
+        int[] arrayNine = generateRandomArray();
+        int max = 100_000;
+        int min = 200_000;
+        for (int i : arrayNine) {
+            if (i >= max) {
+                max = i;
+            }
+            if (i <= min) {
+                min = i;
+            }
+        }
+        System.out.println("Минимальная сумма трат за день составила " + min + " рублей. Максимальная сумма трат за день составила " + max + " рублей");
+
+        // задание 3
+        /*
+        Нужно написать программу, которая посчитает среднее значение трат за месяц (то есть сумму всех трат за месяц поделить на количество дней),
+        и вывести в консоль результат в формате: «Средняя сумма трат за месяц составила … рублей».
+         */
+        System.out.println("Средняя сумма трат за месяц составила " + sum / 30.0f + " рублей");
+
+        // задание 4
+        /*
+        В нашей бухгалтерской книге появился баг. Что-то пошло нет так, и Ф. И. О. сотрудников начали отображаться в обратную сторону. Т. е. вместо «Иванов Иван Иванович» мы имеем «чивонавИ навИ вонавИ».
+        Данные с именами сотрудников хранятся в виде массива символов (char[]).
+        Напишите код, который в случае такого бага будет выводить Ф. И. О. сотрудников в корректном виде. В качестве данных для массива используйте:
+        char[] reverseFullName = { 'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
+        В результате в консоль должно быть выведено "Ivanov Ivan".
+         */
+        char[] reverseFullName = { 'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
+        for (int i = reverseFullName.length - 1; i >= 0; i--) {
+            System.out.print(reverseFullName[i]);
+        }
+    }
+
+
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
     }
 }
 
